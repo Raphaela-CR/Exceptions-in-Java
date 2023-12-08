@@ -1,7 +1,8 @@
-package model.entities;
+package entities;
 
-import java.sql.Date;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Reservation {
@@ -11,6 +12,10 @@ public class Reservation {
     private Date checkOut;
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public Reservation() {
+
+    }
 
     public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
         this.roomNumber = roomNumber;
