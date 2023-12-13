@@ -8,7 +8,7 @@ import java.util.Scanner;
 import entities.Reservation;
 
 public class Program {
-    public static void main(String[] args) throws ParseException  {
+    public static void main(String[] args) throws ParseException {
 
         Scanner sc = new Scanner(System.in);
 
@@ -21,13 +21,31 @@ public class Program {
         System.out.println("Check-Out date: (dd/MM/yyyy)");
         Date checkOut = sdf.parse(sc.next());
 
-        if(!checkOut.after(checkIn)) {
+        if (!checkOut.after(checkIn)) {
             System.out.println("Error in reservation: Check-Out date must be after Check-in date.");
         } else {
-           Reservation reservation = new Reservation(number, checkIn, checkOut);
-           System.out.println(reservation);
+            Reservation reservation = new Reservation(number, checkIn, checkOut);
+            System.out.println(reservation);
+
+            System.out.println();
+            System.out.println("Enter data to update the reservation: ");
+            System.out.println("Check-in date: (dd/MM/yyyy): ");
+            checkIn = sdf.parse(sc.next());
+            System.out.println("Check-Out date: (dd/MM/yyyy)");
+            checkOut = sdf.parse(sc.next());
+
+            Date now = new Date();
+            if(!checkIn.before(now) || (checkOut.before(now))) {
+                System.out.println("Error in reservation: REservation dates should be after the current date");
+            }
+            else if (!checkOut.after(checkIn)) {
+            System.out.println("Error in reservation: Check-Out date must be after Check-in date.");
+            } else {
+                reservation.updateDates(checkIn, checkOut);
+            System.out.println(reservation);
+            }
         }
-        
+
         sc.close();
     }
 }
